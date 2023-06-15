@@ -11,4 +11,6 @@ const getUser = async (email, password) => {
 //     return users;
 // };
 
-module.exports = { getUser };
+module.exports = {
+    getUser,
+};

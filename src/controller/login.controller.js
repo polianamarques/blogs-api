@@ -7,7 +7,7 @@ const createLogin = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await userService.getUser(email, password);
-    if (!user) {
+    if (!user) { 
       return res.status(400).json({
             message: 'Invalid fields',
           });
