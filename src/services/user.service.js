@@ -28,12 +28,13 @@ const createUser = async (email, password, displayName, image) => {
 
     return { type: 201, data: { token } };
 };
-// const getAll = async () => {
-//     const users = await User.findAll();
-//     return users;
-// };
+const getAll = async () => {
+    const users = await User.findAll();
+    return users;
+};
 
 module.exports = {
     getUser,
     createUser,
+    getAll,
 };
