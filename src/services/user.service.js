@@ -12,15 +12,15 @@ const getUser = async (email, password) => {
 
 const createUser = async (email, password, displayName, image) => {
     const verifyUser = await User.findOne({ where: { email } });
-    if (verifyUser) return { type: 409, data: { message: 'User already registered' } }; 
+    if (verifyUser) return { type: 409, data: { message: 'User already registered' } };
     const user = await User.create({
         displayName, email, password, image,
     });
     const jwtConfig = {
         expiresIn: '7d',
         algorithm: 'HS256',
-      };
-      const token = jwt.sign({
+    };
+    const token = jwt.sign({
         data: {
             userId: user.id,
         },
@@ -33,8 +33,16 @@ const getAll = async () => {
     return users;
 };
 
+const getById = async (id) => {
+    const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+    if (!user) {
+        return { type: 404, data: { message: 'User does not exist' } };
+    }
+    return { type: 200, data: user };
+};
 module.exports = {
     getUser,
     createUser,
     getAll,
+    getById,
 };

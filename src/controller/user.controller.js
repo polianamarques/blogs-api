@@ -15,4 +15,10 @@ const getAll = async (_req, res) => {
     }
 };
 
-module.exports = { createUser, getAll };
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const { type, data } = await userService.getById(id);
+  return res.status(type).json(data);
+};
+
+module.exports = { createUser, getAll, getById };

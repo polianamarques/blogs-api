@@ -7,11 +7,14 @@ const validateToken = async (req, res, next) => {
        const token = req.header('Authorization');
        if (!token) {
         return res.status(401).json({ message: 'Token not found' });
-       } await jwt.verify(token, secret);
+       } 
+       await jwt.verify(token, secret);
        next();
     } catch (error) {
         return res.status(401).json({ message: 'Expired or invalid token' });
     }
 };
+
+// validateToken feita com auxilio do conteudo do Course da Trybe
 
 module.exports = validateToken;
