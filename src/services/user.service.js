@@ -29,7 +29,7 @@ const createUser = async (email, password, displayName, image) => {
     return { type: 201, data: { token } };
 };
 const getAll = async () => {
-    const users = await User.findAll();
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
     return users;
 };
 
