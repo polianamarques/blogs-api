@@ -6,5 +6,5 @@ const { categoryController } = require('../controller');
 const categoryRouter = Router();
 
 categoryRouter.post('/', validateToken, validateName, categoryController.createCategory);
-
+categoryRouter.get('/', validateToken, categoryController.getAll);
 module.exports = categoryRouter;
